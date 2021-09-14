@@ -44,26 +44,29 @@ int main() {
 	++date2;
 	cout << "Date is: " << date1 << endl;
 	cout << "Date is: " << date2 << endl;
-
-	Date date3, date4;
-    date3 = date1 + 82; // using overloaded operator "+"
-    date4 = 6 + date2; // using overloaded operator "+"
 	cout << "After addition" << endl;
+	cout << "Date is: " << date1 << endl;
+	cout << "Date is: " << date2 << endl;
+	Date date3, date4;
+	date3 = date1 + 82; // using overloaded operator "+"
+	date4 = 6 + date2; // using overloaded operator "+"
 	cout << "Date is: " << date3 << endl;
 	cout << "Date is: " << date4 << endl;
 }
 /* Sample Execution:
 The initialized date is: 0/0/0
-Please enter a date in this sequence: Month, Day, Year: 11 27 1992
-Please enter a second date in this sequence: Month, Day, Year: 12 1 2001
+Please enter a date in this sequence: Month, Day, Year: 1 1 1
+Please enter a second date in this sequence: Month, Day, Year: 2 2 2
 Printing the two days:
-The date is (M/D/Y): 11/27/1992
-The date is (M/D/Y): 12/1/2001
+The date is (M/D/Y): 1/1/1
+The date is (M/D/Y): 2/2/2
 The dates are different
 After incrementing
-Date is: 11/28/1992
-Date is: 12/2/2001
+Date is: 1/2/1
+Date is: 2/3/2
 After addition
-Date is: 2/19/1993
-Date is: 12/8/2001
+Date is: 1/2/1
+Date is: 2/3/2
+Date is: 3/25/1
+Date is: 2/9/2
 */
