@@ -5,23 +5,23 @@ Assisted by and Assisted line numbers: None
 Robert Myers
 rfm5594
 CMPSC122
-Due Time: 11:59pm EST, Sunday, September 12, 2021
-Time of Last Modification: 2:46am EST, Wednesday, September 8, 2021
-Description: Practice creating and working with classes in C++
+Due Time: 11:59pm EST, Sunday, September 19, 2021
+Time of Last Modification: 8:39pm EST, Monday, September 13, 2021
+Description: identifying and working with overloaded functions/writing and testing some overloaded operators
 */
-#include "Date.h"
 #include <iostream>
+#include "Date.h"
 using namespace std;
 
-// Default Constructor
+// Default Constructor:
 Date::Date(): month(0), day(0), year(0) {};
-// Overloaded Constructor
+// Overloaded Constructor:
 Date::Date(int initM, int initD, int initY){
 	setMonth(initM);
 	setDay(initD);
 	setYear(initY);
 }
-// Function Members
+// Function Members:
 void Date::setMonth(int m){
 	if(m>=1 && m<=12){
 		month = m;
@@ -72,10 +72,12 @@ int Date::getYear(){
 	return year;
 }
 void Date::additionHandler(){
+	// if the day is past the limit for the month (for example 12/32) while incrementing, roll the month the next and increase the year (if December)
 	if((month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) && day == 32){
 			if(month == 12){
 				month = 1;
 				day = 1;
+				year++;
 			}
 			else{
 				month++;
@@ -87,6 +89,7 @@ void Date::additionHandler(){
 			if(month == 12){
 				month = 1;
 				day = 1;
+				year++;
 			}
 			else{
 				month++;
@@ -97,6 +100,7 @@ void Date::additionHandler(){
 			if(month == 12){
 				month = 1;
 				day = 1;
+				year++;
 			}
 			else{
 				month++;
@@ -107,8 +111,9 @@ void Date::additionHandler(){
 void Date::display(ostream & COUT) const{
 	COUT << month << "/" << day << "/" << year;
 }
-// Overloaded Operators
+// Overloaded Member Operators:
 bool Date::operator==(const Date & d){
+	// checks equalness of two Date objects
 	if((day == d.day) && (month == d.month) && (year == d.year)){
 		return true;
 	}
@@ -117,19 +122,24 @@ bool Date::operator==(const Date & d){
 	}
 }
 Date & Date::operator++(){
+	// prefix incrementer. as date is incremented rolls over to the next month through additionHandler();
 	day++;
 	additionHandler();
 	return *this;
 }
+// Overloaded Non-Member Operators:
 ostream & operator<<(ostream & COUT, const Date & d){
+	// displays contents of private data in Date object in format MM/DD/YYYY
 	d.display(COUT);
 	return COUT;
 }
 Date operator+(const Date & d, int x){
+	// reuses overloaded operator to allow int + x addition
 	Date tempDate = x + d;
 	return tempDate;
 }
 Date operator+(int x, const Date & d){
+	// starts a loop and increments the day to form addition (not efficient but meets requirements of assignment)
 	Date tempDate = d;
 	for(int i = 0; i < x; i++){
 		++tempDate;
