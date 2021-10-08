@@ -44,5 +44,7 @@ bool isPrime(int n){
 	return true;
 }
 /*Sample Output:
+Please enter an integer n greater than 1:
+850
 17 5 5 2
 */
