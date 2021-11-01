@@ -6,29 +6,30 @@ Robert Myers
 rfm5594
 CMPSC122
 Due Time: 11:59pm EST, Sunday, October 31, 2021
-Time of Last Modification: 8:20pm EST, Monday, Oct 25, 2021
+Time of Last Modification: 4:32pm EST, Sunday, Oct 30, 2021
 Description: To get practice in designing recursive function. 
 */
 #include <iostream>
-#include <vector>
+#include <array>
 using namespace std;
-
+const int SIZE = 10;
 void Print(ostream& out, int a, int b);
-bool isMember(vector<int>& x, int y, int i);
+bool isMember(const array<int, SIZE>& x, int y, int i);
 int main() {
 	srand(time(NULL));
 	int valueToSearch;
 	// Part 1
-	Print(cout, 2, 5);
-	vector<int> test;
-	for(int i=0;i<10;i++){
-		test.push_back(rand() % 10);
-		cout << test[i] << endl;
-	}
+	Print(cout, 2, 5); 
 	// Part 2
+	array<int, SIZE> test; // create array
+	for(int i=0;i<SIZE;i++){ // populate array w/ random values 0-9
+		test[i] = rand() % 10;
+		cout << test[i] << " ";
+	}
+	cout << endl;
 	cout << "Please enter an integer you would like to find: ";
 	cin >> valueToSearch;
-	if(isMember(test, valueToSearch, 0)){
+	if(isMember(test, valueToSearch, 0)){ // call to recursive function
 		cout << "Found!";
 	}
 	else{
@@ -36,30 +37,30 @@ int main() {
 	}
 }
 void Print(ostream& out, int a, int b){
-	if(a > b){
-		return;
+	if(a > b){ 
+		return; // base case
 	}
 	else{
-		for(int i=0; i < a;i++){
+		for(int i=0; i < a;i++){ // print "-" int a number of times
 			out << "- ";
 		}
 		out << endl;
-		Print(out, a+1,b);
-		for (int j=0; j < a; j++){
+		Print(out, a+1,b); // recursive call
+		for (int j=0; j < a; j++){ // continue after recursive call
 			out << "- ";
 		}
 		out << endl;
 	}
 }
-bool isMember(vector<int>& x, int y, int i){
-	if(x[i] == y){
-		return true;
+bool isMember(const array<int, SIZE>& x, int y, int i){
+	if(x[i] == y){ 
+		return true; // primary case to end recursion
 	}
-	else if(x[i] == '\0'){
-		return false;
+	else if(i == x.size() - 1){
+		return false; // secondary case to end recursion
 	}
 	else{
-		return isMember(x, y, i+1);
+		return isMember(x, y, i+1); // recursive call
 	}
 }
 /* Sample Output:
@@ -71,16 +72,7 @@ bool isMember(vector<int>& x, int y, int i){
 - - - - 
 - - - 
 - - 
-7
-8
-9
-5
-6
-5
-8
-7
-3
-8
-Please enter an integer you would like to find: 1
+4 8 0 4 5 3 2 8 8 1 
+Please enter an integer you would like to find: 9
 Not found!
 */
